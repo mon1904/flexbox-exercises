@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Flexbox</title>
+<style>
+
+
+
+/*
+	Set the box-sizing of html to border-box. We then arrange for all elements
+	to inherit their box-sizing property from it (direcly or indirectly).
+	This effectively sets box-sizing as the default value for convenience
+*/
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+
+/* Use a flex container to center the main content container*/
+
+body {
+	font-family: palatino, serif;
+	display: flex;
+	justify-content: space-around;
+
+}
+
+
+#container {
+
+	width: 90%;
+}
+
+
+
+
+h2 {
+	font-family:
+	helvetica, san-serif;
+}
+
+
+
+
+/*
+	The article tags contain the text blocks.
+
+*/
+
+
+article {
+	background: black;
+	color: white;
+	padding: 1em;
+
+}
+
+
+/*
+	The #main div contains the articles.
+	We make it a flex container (a row) and
+	arrange for the articles to wrap
+*/
+
+#main {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+
+
+	/*
+		Since each article has a margin of 1rem there would
+		be a gap between the outer edge of the #main flex container
+		and the nearest articles.
+
+		We can use a negative margin of the same amount to
+		line up the edge of the flex container with the edge of
+		the articles
+	*/
+	margin: -1rem;
+}
+
+
+/*
+	One of the flex items in the #main div
+	is a div (which is a flex container itself)
+
+	so the flex items are a mix of article and div tags.
+
+	The following styles all the immediate children
+	of the #main flex container whether they are
+	divs or articles
+*/
+
+
+#main >	* {
+
+	/*
+		Set a minimum width so that the articles will
+		wrap if they can't fit on a single line (i.e. they can't
+		shrink beyond the minimum width).
+	*/
+	min-width: 300px;
+
+	/*
+		Allow the flex items to expand (equally) on the main axis
+	*/
+
+	flex: 1;
+
+	/* Put some space between the flex items */
+
+	margin: 1rem;
+
+}
+
+
+
+/*
+	Arrange for the articles in the div flex item
+	to be arranged in a column
+*/
+
+#main > div {
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+
+}
+
+
+/*
+	Arrange for the flex items in the column flex container
+	to also expand on the main axis
+*/
+
+#main > div > article {
+
+	flex: 1;
+
+}
+
+
+/*
+	Put some space vertically between the articles in the column
+
+	The selector specifies any article that is preceded by another
+	article. This means it won't select the first article (we
+	don't want a gap between the first article and the top
+	of the column).
+*/
+
+#main > div > article + article {
+
+	/*
+		The margin is 2em to match the vertical gap of 2rem
+		between each line (i.e. 1rem at the bottom of the
+		articles on one line, and 1rem at the top of the next.
+	*/
+	margin-top: 2rem;
+}
+
+</style>
+
+	</head>
+	<body>
+
+	<div id = container>
+
+	<header><h2>Flexbox</h2></header>
+
+	<div id = main>
+
+
+		<article>
+			<h2>Step 1</h2>
+
+				<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+		</article>
+
+
+		<div id = "col2">
+
+
+<article>
+<h2>Step 2a</h2>
+
+				<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+
+</article>
+
+
+<article>
+<h2>Step 2b</h2>
+
+<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+		</article>
+
+		</div>
+
+
+
+<article>
+
+<h2>Step 3</h2>
+
+				<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+
+</article>
+
+
+</div>
+
+
+</div>
+
+</body>
+</html>

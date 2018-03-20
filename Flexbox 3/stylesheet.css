@@ -1,0 +1,425 @@
+/* Make the font-size proportionate to the width of the page
+  We add 10px  (.625 of 16px) as a base amount to prevent
+  the text getting to too small
+  */
+
+/*------------------ Main Layout ----------------_*/
+body {
+  font-size: calc(0.625em + 1vw);
+  //font size 16px
+
+  font-family : helvetica, sans-serif;
+  background: black;
+  color: lightgrey;
+
+  mmargin: 0px;
+}
+
+/* The main content should take up 50% of the width
+    of the page. It should also be centered.
+
+	All the block level tags inside <main> will be
+	restricted to this containers width
+*/
+
+main {
+
+
+	/* Specify the width */
+	width: 50%;
+	/* Center the element */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+/*--------------- Header -----------------*/
+
+ul.date {
+  /* remove the bullets and the default padding from the <ul> tag */
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  color: lightgrey;
+  text-align: right;
+
+
+  /* Use absolute positioning to move the date.
+  This will shrink the width of the <ul> tag around its
+  contents. We then move the right hand side of the <ul>
+  away from the right-hand side of the <article> tag
+  (which contains the heading/content of a blog entry)
+  by exactly the width of the <article> element (100%).
+  I.e. the right-hand side of the <ul> tag will line up
+  with the left-hand side of the <article>.
+  The extra gap between the date and the <article> is the margin-right we added
+  below */
+  position: absolute;
+  right: 100%;
+
+  /* Red border above the date */
+  border-top: 1px solid red;
+
+  /* Put some space on the right of the date in order to push the content
+  away (to the left) from the <article> element */
+  margin-right: 1em;
+
+  /* USe a monospace font so all characters are the same width */
+	font-family: "Bungee Inline", monospace;
+
+	/* Increase the base font-size of the date components */
+	/* Each individual component will be base don this */
+
+	font-size: 2em;
+	line-height: 1.2;
+
+}
+
+  /* ------Style the year part of the date -------*/
+  .year {
+
+  	/* We want the width of the date <ul> to accomodate 4 characters.
+  		I.e. There will be 4 characters in a year ("2019", "2020", etc).
+
+  		As this is the default there is technically  no need to set this.
+  	*/
+
+  	font-size: 1em;
+
+  }
+
+  /* Style the month part of the date */
+  .month {
+
+  	/* The Width of the date <ul> should accomodate 4 regular characters.
+  		We want these characters representing the month to be larger.
+  		There will be 3 characters in a month ("Jan", "Feb", etc).
+  		Therefore the width of these should be
+  		4 / 3 = 1.3 times the size of a normal character.
+
+  		We can use ems to set the relative size of a character.
+  	*/
+
+  	font-size: 1.3em;
+
+  }
+
+
+  /* Style the day part of the date */
+  .day {
+
+  	/* Remove some of the gap between lines */
+  	line-height: .8em;
+
+  	/* The Width of the date <ul> should accomodate 4 regular characters.
+  		We want these characters representing the day to be larger.
+  		There will be a maximum of 2 characters in a day ("1", "22", etc).
+  		Therefore the width of these should be
+  		4 / 2 = 2 times the size of a normal character.
+
+  		We can use ems to set the relative size of a character.
+  	*/
+
+  	font-size: 2em;
+
+  	padding-top: 0;
+  	margin-top: 0;
+
+  }
+
+  /* --------- SOCIAL MEDIA ICONS ------ */
+
+
+  /* Push the social media icons to the right (similar to how we moved the date) */
+
+  ul.social {
+    border-top: 1px solid red;
+
+  	position: absolute;
+  	margin-top: 0;
+
+  	margin-left: 3em;
+  	left: 100%;
+
+  	/* Remove the default list styles */
+  	list-style: none;
+  	padding: 0px;
+
+  }
+
+  /* put some vertical distance from the top of the
+	individual social icons (except the first)*/
+
+ul.social li + li {
+
+	margin: 15px 0px 0px  0px ;
+
+}
+
+
+/* ------------ BLOG TITLE -------------- */
+/* There is only one <h1> tag on the page so it must be the main blog heading. All other headings are <h2> */
+
+ h1 {
+	/* Increase the size of the font */
+	font-size: 4em;
+
+	/* Set the font to a web font */
+	font-family: Nosifer, sans-serif;
+
+	color: red;
+
+
+	text-align: left;
+
+	/* Reduce the gap between lines if the title spans more than one line*/
+
+	/* Note: The final value of this is the 4em we set the font-size to */
+	line-height: 1em;
+
+}
+h2 {
+  color:red;
+}
+
+/* ---------------  BLOG Articles ------------------ */
+article {
+	/* Put some vertical distance from the previous article */
+	margin-top: 10em;
+	font-family: "Exo 2", sans-serif;
+
+	/* We will be positioning other content (the date, social media icons)
+		with absolute positioning so we want to specify that their offset
+		(top, left, right) are calculated from this container element.*/
+	position: relative;
+
+	/* We want the article to clear any floating content (i.e. the images) from
+		the previous article */
+	clear: both;
+	border-top: 1px solid red;
+}
+
+/* -Article heading- */
+ article h2 {
+	/* This converts text to all uppercase */
+	text-transform: uppercase;
+	color: red;
+	font-size: 2em;
+	margin: 0px;
+}
+
+article p{
+  margin-top: 2em;
+  text-align: justify;
+}
+
+/* Style first letter of the h2 tag */
+
+h2::first-letter{
+  margin:0px;
+  font-size: 3em;
+  color: red;
+  font-family: nonsifer, sans-serif;
+  line-height: 1em;
+}
+
+
+/* -Author name- */
+
+/* This selector chooses the <div> that follows a H1 tag in a header. I.e. the author name */
+
+/* we could also use "header div" */
+
+h2 + div {
+
+	font-family: 'Nothing You Could Do', cursive;
+	color: red;
+	margin-top: 1.5em;
+
+}
+
+/* -Article text- */
+article p {
+	/* Create some extra vertical space between pararaphs */
+	margin-top: 2.5em;
+	/* Arrange for the text to spread out between both margins*/
+	text-align: justify;
+}
+
+/* -------------"New" Banner ------------------*/
+
+#banner{
+	background: red;
+	color: white;
+
+	margin: 0px;
+	font-family: "Bungee Inline", monospace;
+	line-height: 2em;
+	font-size: 1.5em;
+
+	width: 10em;
+	/* Rotate the banner by 45 degrees
+		around the top left corner */
+
+	transform-origin: top left;
+	transform: rotate(-45deg);
+	text-align: center;
+
+
+	/* position the banner so its ends can't be seen */
+
+	position: absolute;
+
+	/* values calculated with Pythagoras Theorem  (see notes) */
+	top: 5.6em;
+	left: -1.4em;
+
+
+}
+
+.picture {
+
+	/* Float pictures to the left by default */
+	float: left;
+
+
+	/* Arrange for no margin on the  same side nearest the <Article> margin
+		so it is flush agaist the edge */
+
+
+	margin-top: 15px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 15px;
+
+	/* Add a border */
+	border: 2px solid gray;
+
+	width: 50%;
+}
+
+/* Change the direction that the picture in every even article is facing */
+
+article:nth-child(even) .picture {
+
+	float: right;
+
+	/* Change the side the 0 margin is on */
+	margin-left: 15px;
+	margin-right: 0px;
+
+}
+
+/* Resize the image */
+
+.picture img {
+
+	/* Make the image the full width of its container */
+
+	width: 100%;
+
+	/* get rid of vertical gap at bottom of image
+		(due to it being inline) */
+
+	vertical-align: bottom;
+}
+
+
+/*   ------------  Gap underneath red border-top   ---------  */
+/* The date, social icons and article all have a small gap
+	between their content and the red border-top.
+	This is the padding-top.
+	We want this to be the default font-size. */
+
+ul.social, article header  {padding-top: 1em;}
+/* However, since we doubled the font-size of the date
+	(to 2em) we need to divide by 2 to get back the default size. */
+
+ul.date {padding-top: 0.5em;}
+
+
+/* ----------------- Media Queries ----------------------- */
+
+
+
+@media (max-width: 500px)
+{
+
+	/* images in the articles should become full width */
+	.picture { width: 100%;}
+
+
+
+	/* Move the social icons to the same side as the date
+			and underneath it */
+
+	ul.social {
+
+
+		/* Push the social media icons to the left by the width of their
+			container (i.e. the article). 100% pushes it just
+			outside the container */
+
+		right: 100%;
+
+		/* We must remove the previous value for left (100%) */
+		left: auto;
+
+
+		/* Push the date out a bit further
+			This should be same distance as the date */
+		margin-right: 2em;
+
+		/* We can add up the height of the date (we have 3 lines we know the
+			 line-height of and any margins/padding) to make
+			 sure the icons appear underneath
+			 Note: this value is rounded up)*/
+
+		top: 6em;
+
+
+		/* Turn off the border-top */
+		border-top: none;
+
+	}
+
+
+	ul.date {
+
+		/* Shrink the date from 2em as base size to 1em */
+		font-size: 1em;
+
+		/* Move away from the left edge
+			This is actually the same distance as before. But since the font-size
+			of the date is halved, we double this distance (since it is
+			 proportinate to the font-size
+		*/
+		margin-right: 2em;
+
+		/* Push the date down from its border-top (the red line) with padding
+			The original gap was 0.5em, and we want to keep that same final size.
+			Since we halved the font-size an em is now half the size.
+			So we double the padding to 1em.
+		*/
+		padding-top: 1em;
+	}
+
+	main {
+
+		/* let the width expand to fill the page ,i.e. set it to its default */
+		width: auto;
+
+		/* But leave enough space for the  the date and social media icons
+			(and some extra space around them) on the left
+
+			E.g. roughly the width of 4 characters and 2ems on either side
+		*/
+		margin-left: calc(4ch + 2em + 2em);
+
+		/* Puch its content/text away from the right edge */
+		padding-right: 1em;;
+
+
+	}
+
+}	
